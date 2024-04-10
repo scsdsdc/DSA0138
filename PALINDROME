@@ -3,18 +3,15 @@ using namespace std;
 
 int main() {
     int num, reverse = 0, rem, temp;
-    num = 12321; // Example number, you can change this
+    num = 12321; 
     cout << "\nThe number is: " << num;
     temp = num;
-
-    // Loop to find the reverse number
     while (temp != 0) {
         rem = temp % 10;
         reverse = reverse * 10 + rem;
         temp /= 10;
     }
 
-    // Check if the number is a palindrome
     if (num == reverse)
         cout << num << " is Palindrome";
     else
