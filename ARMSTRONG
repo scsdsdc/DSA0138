@@ -1,0 +1,26 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    int num, temp, rem, sum = 0;
+    cout << "Enter the maximum limit to generate Armstrong numbers: ";
+    cin >> num;
+    cout << "Following Armstrong numbers are found from 1 to " << num << ":\n";
+
+    for (int i = 1; i <= num; i++) {
+        temp = i;
+        while (temp != 0) {
+            rem = temp % 10;
+            sum = sum + pow(rem, 3); 
+            temp = temp / 10;
+        }
+
+        if (i == sum) {
+            cout << i << " ";
+        }
+        sum = 0; // Reset sum for the next number
+    }
+
+    return 0;
+}
