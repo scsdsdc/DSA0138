@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+
+void subtractMatrices(int mat1[][3], int mat2[][3], int mat3[][3]) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            mat3[i][j] = mat1[i][j] - mat2[i][j];
+        }
+    }
+}
+
+void printMatrix(int mat[][3]) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cout << mat[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    int mat1[3][3] = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };
+    int mat2[3][3] = { {3, 2, 1}, {6, 5, 4}, {9, 8, 7} };
+    int mat3[3][3];
+
+    subtractMatrices(mat1, mat2, mat3);
+    cout << "Result matrix: " << endl;
+    printMatrix(mat3);
+
+    return 0;
+}
