@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cstring>
+
+void countVowelsAndConsonants(const char* str, int& vowels, int& consonants) {
+    vowels = 0;
+    consonants = 0;
+    
+    while (*str) {
+        char current = *str;
+        if (isalpha(current)) {
+            current = tolower(current);
+            if (current == 'a' || current == 'e' || current == 'i' || current == 'o' || current == 'u') {
+                vowels++;
+            } else {
+                consonants++;
+            }
+        }
+        str++;
+    }
+}
+
+int main() {
+    const char* inputString = "Hello, World!";
+    int numVowels, numConsonants;
+    
+    countVowelsAndConsonants(inputString, numVowels, numConsonants);
+    
+    std::cout << "Number of vowels: " << numVowels << std::endl;
+    std::cout << "Number of consonants: " << numConsonants << std::endl;
+    
+    return 0;
+}
