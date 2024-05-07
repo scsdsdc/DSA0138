@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numStudents;
+    cout << "Enter the number of students: ";
+    cin >> numStudents;
+
+    int physics, chemistry, mathematics;
+    double totalMarks = 0;
+
+    for (int i = 1; i <= numStudents; i++) {
+        cout << "Enter Physics marks for student " << i << ": ";
+        cin >> physics;
+
+        cout << "Enter Chemistry marks for student " << i << ": ";
+        cin >> chemistry;
+
+        cout << "Enter Mathematics marks for student " << i << ": ";
+        cin >> mathematics;
+
+        double total = physics + chemistry + mathematics;
+        totalMarks += total;
+
+        cout << "Total marks for student " << i << " is: " << total << endl;
+    }
+
+    double averageMarks = totalMarks / numStudents;
+    cout << "Average marks of the class: " << averageMarks << endl;
+
+    return 0;
+}
