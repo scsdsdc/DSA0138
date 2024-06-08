@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int sentinelLinearSearch(int array[], int length, int key) {
+    int last = array[length - 1];
+    array[length - 1] = key;
+
+    int i = 0;
+    while (array[i] != key) {
+        i++;
+    }
+
+    array[length - 1] = last;
+
+    if (i < length - 1 || last == key) {
+        return i;
+    } else {
+        return -1;
+    }
+}
+
+int main() {
+    int array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int length = sizeof(array) / sizeof(array[0]);
+    int key;
+
+    printf("Enter the element to be searched: ");
+    scanf("%d", &key);
+
+    int index = sentinelLinearSearch(array, length, key);
+
+    if (index == -1) {
+        printf("%d is not found in the array.\n", key);
+    } else {
+        printf("%d is found at index %d.\n", key, index);
+    }
+
+    return 0;
+}
