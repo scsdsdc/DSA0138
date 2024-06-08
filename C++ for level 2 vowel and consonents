@@ -1,32 +1,63 @@
-#include <iostream>
-#include <cstring>
+#include <stdio.h>
+#include <stdlib.h>
 
-void countVowelsAndConsonants(const char* str, int& vowels, int& consonants) {
-    vowels = 0;
-    consonants = 0;
-    
-    while (*str) {
-        char current = *str;
-        if (isalpha(current)) {
-            current = tolower(current);
-            if (current == 'a' || current == 'e' || current == 'i' || current == 'o' || current == 'u') {
-                vowels++;
-            } else {
-                consonants++;
-            }
-        }
-        str++;
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+Node* createNode(int value) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    if (!newNode) {
+        printf("Memory error\n");
+        return NULL;
+    }
+    newNode->data = value;
+    newNode->next = NULL;
+    return newNode;
+}
+
+void insertAtBeginning(Node** head, int value) {
+    Node* newNode = createNode(value);
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        newNode->next = *head;
+        *head = newNode;
     }
 }
 
+void insertAtEnd(Node** head, int value) {
+    Node* newNode = createNode(value);
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        Node* lastNode = *head;
+        while (lastNode->next != NULL) {
+            lastNode = lastNode->next;
+        }
+        lastNode->next = newNode;
+    }
+}
+
+void printList(Node* head) {
+    while (head != NULL) {
+        printf("%d ", head->data);
+        head = head->next;
+    }
+    printf("\n");
+}
+
 int main() {
-    const char* inputString = "Hello, World!";
-    int numVowels, numConsonants;
-    
-    countVowelsAndConsonants(inputString, numVowels, numConsonants);
-    
-    std::cout << "Number of vowels: " << numVowels << std::endl;
-    std::cout << "Number of consonants: " << numConsonants << std::endl;
-    
+    Node* head = NULL;
+
+    // Insert nodes at the beginning and end
+    insertAtBeginning(&head, 10);
+    insertAtBeginning(&head, 5);
+    insertAtEnd(&head, 15);
+
+    // Print the linked list
+    printList(head);
+
     return 0;
 }
