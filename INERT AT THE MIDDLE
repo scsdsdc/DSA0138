@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+
+int calcSize(struct Node *node) {
+    int size = 0;
+    while (node != NULL) {
+        node = node->next;
+        size++;
+    }
+    return size;
+}
+void insertPosition(int pos, int data, struct Node **head) {
+    int size = calcSize(*head);
+    if (pos < 1 || size < pos) {
+        printf("Can't insert, %d is not a valid position\n", pos);
+    } else {
+        struct Node *temp = *head;
+        struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+        newNode->data = data;
+        newNode->next = NULL;
+        while (--pos) {
+            temp = temp->next;
+        }
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+}
+
+// Function to display the linked list
+void displayList(struct Node *node) {
+    while (node != NULL) {
+        printf("%d ", node->data);
+        node = node->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    struct Node *head = NULL;
+    int n, data, pos;
+
+    printf("Enter the total number of nodes: ");
+    scanf("%d", &n);
+
+    // Create the linked list with n nodes
+    for (int i = 1; i <= n; i++) {
+        struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+        printf("Enter data for node %d: ", i);
+        scanf("%d", &data);
+        newNode->data = data;
+        newNode->next = NULL;
+        if (i == 1) {
+            head = newNode;
+        } else {
+            struct Node *temp = head;
+            while (temp->next != NULL) {
+                temp = temp->next;
+            }
+            temp->next = newNode;
+        }
+    }
+
+    printf("Data in the list: ");
+    displayList(head);
+
+    printf("Enter data to insert at middle of the list: ");
+    scanf("%d", &data);
+    printf("Enter the position to insert new node: ");
+    scanf("%d", &pos);
+
+    insertPosition(pos, data, &head);
+
+    printf("Data in the list after insertion: ");
+    displayList(head);
+
+    return 0;
+}
